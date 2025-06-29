@@ -1,0 +1,9 @@
+a.
+Curva A tem o pico entre 40 - 50, provavelmente 45
+Curva B tem o pico em 60
+Curva C tem o pico entre 40 - 50, provavelmente 45
+
+Logo a curva B tem a maior média.
+
+b.
+Analisando o gráfico, a curva C possui a maior dispersão, logo a com maior desvio padrão.
