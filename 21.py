@@ -1,0 +1,68 @@
+import scipy.stats
+import matplotlib.pyplot as plt
+import numpy as np
+
+n = 100
+p = 0.34
+q = 1 - p
+
+# a. Determine se você pode usar uma distribuição normal para aproximar a variável binomial.
+np_produto = n * p
+nq_produto = n * q
+pode_aproximar = (np_produto >= 5) and (nq_produto >= 5)
+
+print(f"a. Verificação da aproximação normal:")
+print(f"   np = {np_produto:.2f}, nq = {nq_produto:.2f}.")
+print(f"   É possível usar uma distribuição normal para aproximar (ambos >= 5)? {'Sim' if pode_aproximar else 'Não'}")
+
+if not pode_aproximar:
+    print("   (Não é possível prosseguir com a aproximação normal. O restante da questão assume que sim.)")
+    exit() # Interrompe a execução se a aproximação não for válida
+
+# b. Determine a média µ e o desvio padrão σ para a distribuição normal.
+media_normal = np_produto
+desvio_padrao_normal = np.sqrt(n * p * q)
+print(f"\nb. Média (µ) da distribuição normal: {media_normal:.2f}")
+print(f"   Desvio Padrão (σ) da distribuição normal: {desvio_padrao_normal:.2f}")
+
+# c. Aplique a correção de continuidade para reescrever P(x > 30) e esboce um gráfico.
+# P(x > 30) na distribuição binomial discreta é P(x >= 31).
+# Com correção de continuidade, para a distribuição normal, isso é P(X >= 30.5).
+valor_corrigido = 30.5
+print(f"\nc. Correção de continuidade: P(x > 30) se torna P(X >= {valor_corrigido}) na aproximação normal.")
+
+# Esboço do gráfico
+x_vals = np.linspace(media_normal - 4 * desvio_padrao_normal, media_normal + 4 * desvio_padrao_normal, 500)
+y_vals = scipy.stats.norm.pdf(x_vals, loc=media_normal, scale=desvio_padrao_normal)
+
+plt.figure(figsize=(10, 6))
+plt.plot(x_vals, y_vals, color='blue', label='Distribuição Normal Aproximada')
+plt.axvline(media_normal, color='gray', linestyle='--', linewidth=0.8, label=f'Média = {media_normal:.2f}')
+plt.axvline(valor_corrigido, color='red', linestyle='--', label=f'x corrigido = {valor_corrigido}')
+
+# Sombrear a área à direita do valor corrigido
+x_fill = np.linspace(valor_corrigido, x_vals.max(), 100)
+y_fill = scipy.stats.norm.pdf(x_fill, loc=media_normal, scale=desvio_padrao_normal)
+plt.fill_between(x_fill, 0, y_fill, color='salmon', alpha=0.6, label=f'P(X > 30) = P(X >= {valor_corrigido})')
+
+plt.title('Aproximação Normal da Distribuição Binomial (n=100, p=0.34)')
+plt.xlabel('Número de Respostas "Sim"')
+plt.ylabel('Densidade de Probabilidade')
+plt.legend()
+plt.grid(True, linestyle=':', alpha=0.7)
+plt.show()
+
+# d. Calcule o correspondente escore-z.
+z_score = (valor_corrigido - media_normal) / desvio_padrao_normal
+print(f"\nd. O escore-z correspondente é: {z_score:.2f}")
+
+# e. Use a tabela normal padrão para encontrar a área à esquerda de z e calcule a probabilidade.
+area_esquerda_z = scipy.stats.norm.cdf(z_score)
+probabilidade = 1 - area_esquerda_z # Área à direita
+
+print(f"\ne. Área à esquerda de z = {z_score:.2f} é: {area_esquerda_z:.4f}")
+print(f"   A probabilidade de que mais de 30 respondam “sim” é: {probabilidade:.4f} ou {probabilidade*100:.2f}%")
+
+print("\nInterpretação:")
+print(f"A probabilidade de que mais de 30 dos 100 adultos americanos selecionados aleatoriamente tenham visto a situação é de aproximadamente {probabilidade*100:.2f}%.")
+     
