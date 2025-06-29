@@ -1,0 +1,8 @@
+--- Questão 41 --- Você realiza um teste de hipótese para cada uma das afirmações. Como você deveria interpretar sua decisão, se rejeitar H0? E se você não rejeitar H0 --- Afirmação 1 ---
+
+H0 (afirmação): Uma escola divulga que a proporção de seus estudantes envolvidos em pelo menos uma atividade extracurricular é de 61%. Hipóteses: H₀: p = 0.61 (A afirmação da escola) Hₐ: p ≠ 0.6 Interpretação da decisão:
+Se você REJEITAR H₀: Há evidência estatística suficiente para concluir que a proporção de estudantes envolvidos em atividades extracurriculares NÃO é de 61%. (Ou seja, você tem evidências para refutar a afirmação da escola.
+Se você NÃO REJEITAR H₀: Não há evidência estatística suficiente para concluir que a proporção de estudantes envolvidos em atividades extracurriculares NÃO é de 61%. (Ou seja, você não tem evidências para refutar a afirmação da escola; isso NÃO significa que a proporção é 61%, apenas que não foi provado o contrário. --- Afirmação 2 ---
+Ha (afirmação): Uma concessionária de automóveis anuncia que o tempo médio para uma troca de óleo é menor que 15 minutos. Hipóteses: H₀: μ ≥ 15 Hₐ: μ < 15 (A afirmação da concessionária Interpretação da decisão:
+Se você REJEITAR H₀: Há evidência estatística suficiente para concluir que o tempo médio para uma troca de óleo É MENOR QUE 15 MINUTOS. (Ou seja, você tem evidências para apoiar a afirmação da concessionária.
+Se você NÃO REJEITAR H₀: Não há evidência estatística suficiente para concluir que o tempo médio para uma troca de óleo É MENOR QUE 15 MINUTOS. (Ou seja, você não tem evidências para apoiar a afirmação da concessionária.)
